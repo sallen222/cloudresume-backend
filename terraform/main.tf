@@ -68,7 +68,7 @@ resource "aws_api_gateway_integration" "apigw-integration-inc" {
 }
 
 resource "aws_api_gateway_deployment" "resume-deployment" {
-  rest_api_id = aws_api_gateway_rest_api.resume-api.id  
+  rest_api_id = aws_api_gateway_rest_api.resume-api.id
 
   depends_on = [
     aws_api_gateway_integration.apigw-integration-get,
@@ -78,14 +78,14 @@ resource "aws_api_gateway_deployment" "resume-deployment" {
 
 resource "aws_api_gateway_stage" "resume-stage" {
   deployment_id = aws_api_gateway_deployment.resume-deployment.id
-  rest_api_id = aws_api_gateway_rest_api.resume-api.id
-  stage_name = "counter"
+  rest_api_id   = aws_api_gateway_rest_api.resume-api.id
+  stage_name    = "counter"
 }
 
 #End APIGW Start Lambda
 
 data "archive_file" "lambda-get" {
-  type = "zip"
+  type        = "zip"
   source_file = "../lambda/lambda-get.py"
   output_path = "lambda-get.zip"
 }
@@ -95,9 +95,7 @@ resource "aws_lambda_permission" "apigw-lambda-get" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.get.function_name
   principal     = "apigateway.amazonaws.com"
-
-  # More: http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-control-access-using-iam-policies-to-invoke-api.html
-  source_arn = "${aws_api_gateway_rest_api.resume-api.execution_arn}/*/*/${aws_api_gateway_resource.resume-resource.path_part}"
+  source_arn    = "${aws_api_gateway_rest_api.resume-api.execution_arn}/*/*/${aws_api_gateway_resource.resume-resource.path_part}"
 }
 
 resource "aws_lambda_function" "get" {
@@ -115,7 +113,7 @@ resource "aws_lambda_function" "get" {
 }
 
 data "archive_file" "lambda-inc" {
-  type = "zip"
+  type        = "zip"
   source_file = "../lambda/lambda-inc.py"
   output_path = "lambda-inc.zip"
 }
@@ -125,9 +123,7 @@ resource "aws_lambda_permission" "apigw-lambda-inc" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.inc.function_name
   principal     = "apigateway.amazonaws.com"
-
-  # More: http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-control-access-using-iam-policies-to-invoke-api.html
-  source_arn = "${aws_api_gateway_rest_api.resume-api.execution_arn}/*/*/${aws_api_gateway_resource.resume-resource.path_part}"
+  source_arn    = "${aws_api_gateway_rest_api.resume-api.execution_arn}/*/*/${aws_api_gateway_resource.resume-resource.path_part}"
 }
 
 resource "aws_lambda_function" "inc" {
