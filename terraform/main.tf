@@ -87,7 +87,7 @@ resource "aws_api_gateway_stage" "resume-stage" {
 
 data "archive_file" "lambda-get" {
   type        = "zip"
-  source_file = "../lambda/lambda-get.py"
+  source_file = "../lambda/lambda_get.py"
   output_path = "lambda-get.zip"
 }
 
@@ -103,7 +103,7 @@ resource "aws_lambda_function" "get" {
   filename      = "lambda-get.zip"
   function_name = "resume-get"
   role          = aws_iam_role.lambda-role-get.arn
-  handler       = "lambda-get.lambda_handler"
+  handler       = "lambda_get.lambda_handler"
   runtime       = "python3.9"
 
   source_code_hash = data.archive_file.lambda-get.output_base64sha256
@@ -115,7 +115,7 @@ resource "aws_lambda_function" "get" {
 
 data "archive_file" "lambda-inc" {
   type        = "zip"
-  source_file = "../lambda/lambda-inc.py"
+  source_file = "../lambda/lambda_inc.py"
   output_path = "lambda-inc.zip"
 }
 
@@ -131,7 +131,7 @@ resource "aws_lambda_function" "inc" {
   filename      = "lambda-inc.zip"
   function_name = "resume-inc"
   role          = aws_iam_role.lambda-role-inc.arn
-  handler       = "lambda-inc.lambda_handler"
+  handler       = "lambda_inc.lambda_handler"
   runtime       = "python3.9"
 
   source_code_hash = data.archive_file.lambda-get.output_base64sha256

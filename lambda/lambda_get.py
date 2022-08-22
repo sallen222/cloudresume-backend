@@ -12,16 +12,16 @@ def lambda_handler(event, context):
 
     if (event.get('path') == '/counter'
     and event.get('httpMethod') == 'GET'
-    ): validation = True
-    else: validation = False
-    return get_views(table, counterID, validation)
+    ): queryparamExists = True
+    else: queryparamExists = False
+    return get_views(table, counterID, queryparamExists)
 
-def get_views(table, counterID, validation):
+def get_views(table, counterID, queryparamExists):
     
     body = 'Provide CounterID as a query parameter'
 
     if (counterID
-    and validation == True
+    and queryparamExists == True
     ):
         body = table.get_item(Key={'CounterID': counterID})['Item']['viewcount'] if ('Item' in table.get_item(Key={'CounterID': counterID})) else 0
     

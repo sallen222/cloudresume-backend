@@ -38,3 +38,7 @@ terraform.rc
 *.zip
 
 *.lock.hcl
+
+__pycache__
+
+.pytest_cache
