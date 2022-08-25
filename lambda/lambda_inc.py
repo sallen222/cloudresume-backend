@@ -11,7 +11,7 @@ def lambda_handler(event, context):
 
 
 def inc_views(table, counterID):
-    # something wrong with this request
+    # something wrong with this request when testing
     output = table.get_item(Key={"CounterID": counterID})
     
     if 'Item' in output:
