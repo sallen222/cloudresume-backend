@@ -1,3 +1,11 @@
+terraform {
+  backend "s3" {
+    bucket = "resume-tfstate-sallen"
+    key    = "backend"
+    region = "us-east-1"
+  }
+}
+
 provider "aws" {
   region = "us-east-1"
 
