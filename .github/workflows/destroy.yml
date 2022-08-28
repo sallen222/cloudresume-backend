@@ -23,11 +23,11 @@ jobs:
           terraform_version: 1.2.4
 
       - name: terraform init
-          working-directory: ${{ env.TERRAFORM_DIR }}
-          env: 
-            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          run: terraform init
+        working-directory: ${{ env.TERRAFORM_DIR }}
+        env: 
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: terraform init
 
       - name: terraform destroy
         working-directory: ${{ env.TERRAFORM_DIR }}
