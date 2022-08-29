@@ -20,9 +20,7 @@ def get_views(table, counterID, queryparamExists):
     
     body = 'Provide CounterID as a query parameter'
 
-    if (counterID
-    and queryparamExists == True
-    ):
+    if (counterID and queryparamExists):
         body = table.get_item(Key={'CounterID': counterID})['Item']['viewcount'] if ('Item' in table.get_item(Key={'CounterID': counterID})) else 0
     
         return {
