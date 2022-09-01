@@ -7,23 +7,24 @@ from lambda_inc import inc_views
 
 def create_table(ddb=None):
     if not ddb:
-        ddb = boto3.resource("dynamodb", endpoint_url="http://localhost:8000")
+        ddb = boto3.resource("dynamodb", endpoint_url="http://localhost:8000", region_name="us-east-1")
 
     tablename = "resume-counter"
 
     table = ddb.create_table(
         TableName=tablename,
         KeySchema=[
-            {'AttributeName': 'counterID', 'KeyType': 'HASH'},
+            {'AttributeName': 'CounterID', 'KeyType': 'HASH'},
         ],
         AttributeDefinitions=[
-            {'AttributeName': 'counterID', 'AttributeType': 'S'},
+            {'AttributeName': 'CounterID', 'AttributeType': 'S'},
         ],
         BillingMode='PAY_PER_REQUEST',
     )
 
     # Wait until the table exists.
     table.meta.client.get_waiter("table_exists").wait(TableName=tablename)
+    print(f"Created table {tablename}")
 
     return table
 
