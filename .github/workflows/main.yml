@@ -55,6 +55,7 @@ jobs:
       runs-on: ubuntu-latest
       env:
         TERRAFORM_DIR: terraform
+      needs: [pytest,tflint]
 
       defaults:
         run:
