@@ -30,10 +30,7 @@ jobs:
         run: pip install pytest
 
       - name: Test
-        run: |
-        cd lambda
-        python -m pytest test.py
-        cd ..
+        run: cd lambda && python -m pytest test.py && cd ..
   
   tflint:
     runs-on: ubuntu-latest
