@@ -6,7 +6,6 @@ on:
       - main
 
 jobs:  
-  
   pytest:
     runs-on: ubuntu-latest
     steps:
