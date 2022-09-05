@@ -1,8 +1,5 @@
 import boto3
 
-if __name__ == "__main__":
-    table = boto3.resource('dynamodb').Table('resume-counter', region_name='us-east-1')
-
 def lambda_handler(event, context):
 
     if context.function_name or __name__ == "__main__":
