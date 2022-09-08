@@ -49,20 +49,20 @@ class TestApi:
         test1 = get_views(TestApi.table, 'resume', True)
         print(test1)
         assert test1 == {
-            "headers": {"Access-Control-Allow-Origin": "*"},
+            "headers": {"Access-Control-Allow-Origin": "sallen.me"},
             "statusCode": 200,
             "body": "1"
         }
         inc_views(TestApi.table, 'resume')
         test2 = get_views(TestApi.table, 'resume', True)
         assert test2 == {
-            "headers": {"Access-Control-Allow-Origin": "*"},
+            "headers": {"Access-Control-Allow-Origin": "sallen.me"},
             "statusCode": 200,
             "body": "2"
         }
         test3 = get_views(TestApi.table, 'resume', False)
         assert test3 == {
-            "headers": {"Access-Control-Allow-Origin": "*"},
+            "headers": {"Access-Control-Allow-Origin": "sallen.me"},
             "statusCode": 200,
             "body": "validation error: check path and http method"
         }

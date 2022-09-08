@@ -21,12 +21,12 @@ def get_views(table, counterID, queryparamExists):
         body = table.get_item(Key={'CounterID': counterID})['Item']['viewcount'] if ('Item' in table.get_item(Key={'CounterID': counterID})) else 0
     
         return {
-            "headers": {"Access-Control-Allow-Origin": "*"},
+            "headers": {"Access-Control-Allow-Origin": "sallen.me"},
             "statusCode": 200,
             "body": f"{body}"
         }
     else: return {
-        "headers": {"Access-Control-Allow-Origin": "*"},
+        "headers": {"Access-Control-Allow-Origin": "sallen.me"},
         "statusCode": 200,
         "body": "validation error: check path and http method"
     }

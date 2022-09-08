@@ -26,7 +26,7 @@ def inc_views(table, counterID):
     body = table.get_item(Key={"CounterID": counterID})
 
     return {
-        "headers": {"Access-Control-Allow-Origin": "*"},
+        "headers": {"Access-Control-Allow-Origin": "sallen.me"},
         "statusCode": 200,
         "body": f"{body}"        
     }
