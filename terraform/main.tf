@@ -91,6 +91,29 @@ resource "aws_api_gateway_stage" "resume-stage" {
   stage_name    = "counter"
 }
 
+resource "aws_api_gateway_rest_api_policy" "test" {
+  rest_api_id = aws_api_gateway_rest_api.resume-api.id
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "execute-api:Invoke",
+      "Resource": "${aws_api_gateway_rest_api.resume-api.execution_arn}}",
+      "Condition": {
+        "StringEquals": {
+          "aws:UserAgent": "Amazon CloudFront"
+        }
+      }
+    }
+  ]
+}
+POLICY
+}
+
 #End APIGW Start Lambda
 
 data "archive_file" "lambda-get" {
