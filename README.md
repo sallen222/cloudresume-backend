@@ -2,8 +2,15 @@
 
 ![Alt text](diagram.jpg?raw=true "Title")
 
-Frontend hosted at: https://github.com/sallen222/cloudresume
+[Frontend Repo](https://github.com/sallen222/cloudresume)
 
-This repo contains the backend infrastructure of my cloud resume project. 
-The backend is hosted on AWS and consists of an API Gateway that targets two Lambda functions which update and retrieve items from DynamoDB.
-These resources are built using Terraform for infrastructure as code and deployed using Github Actions. 
+## Summary
+This repo contains the backend of my cloud resume project inspired by the [Cloud Resume Challenge](https://cloudresumechallenge.dev/docs/the-challenge/aws/).
+
+## Infrastructure
+The backend consists of two AWS Lambda functions written in python that increment and retrieve data from DynamoDB. These functions are exposed via API Gateway and called by the projects frontend website.
+
+This repo contains a unit test for both lambda functions that uses the moto library create a simulatyed DynamoDB table. 
+
+## Deployment
+These resources are built and deployed automatically using Terraform and Github Actions. When changes are pushed to main, the functions are tested and atuomaticcaly deployed.
