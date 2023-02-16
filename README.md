@@ -13,4 +13,4 @@ The backend consists of two AWS Lambda functions written in python that incremen
 This repo contains a unit test for both lambda functions that uses the moto library create a simulatyed DynamoDB table. 
 
 ## Deployment
-These resources are built and deployed automatically using Terraform and Github Actions. When changes are pushed to main, the functions are tested and atuomaticcaly deployed.
+These resources are built and deployed automatically using Terraform and Github Actions. When changes are pushed to main, the functions are tested and automatically deployed.
